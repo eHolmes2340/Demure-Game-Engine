@@ -1,0 +1,28 @@
+# Visual Studio files
+*.sln
+*.vcxproj*
+*.user
+*.opensdf
+*.sdf
+*.suo
+*.cache
+*.vs
+
+#Executables
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+
+
+#Make file 
+*.make
+*.workspace
+
+
+
+#Build Folders
+bin/
+bin-int/
+vendor/Premake
