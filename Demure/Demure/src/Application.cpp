@@ -7,7 +7,9 @@
 #include <Application.h>
 #include <GLFW/glfw3.h>
 #include<spdlog/spdlog.h>
-
+#include<imgui.h>
+#include <backends/imgui_impl_glfw.h>
+#include <backends/imgui_impl_opengl3.h>
 
 
 
@@ -52,6 +54,17 @@ namespace Demure
 
 		glfwSetWindowSizeCallback(m_Window, Demure::WindowSizeCallBack);
 
+
+
+		IMGUI_CHECKVERSION();
+		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		ImGui::StyleColorsDark();
+
+		// Setup Platform/Renderer backends
+		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
+		ImGui_ImplOpenGL3_Init("#version 410"); // or whatever GLSL version you use
+
 	}
 
 	//Deconstructor: Application::~Application()
@@ -70,10 +83,25 @@ namespace Demure
 		while (!glfwWindowShouldClose(m_Window))
 		{
 			glfwPollEvents();
+			// Start the ImGui frame
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
 
-			glClear(GL_COLOR_BUFFER_BIT); 
+			// Example UI
+			ImGui::Begin("Hello, ImGui!");
+			ImGui::Text("This is a test");
+			ImGui::End();
 
-			glfwSwapBuffers(m_Window); 
+			// Render ImGui
+			ImGui::Render();
+			int display_w, display_h;
+			glfwGetFramebufferSize(m_Window, &display_w, &display_h);
+			glViewport(0, 0, display_w, display_h);
+			glClear(GL_COLOR_BUFFER_BIT);
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+			glfwSwapBuffers(m_Window);
 		}
 	}
 

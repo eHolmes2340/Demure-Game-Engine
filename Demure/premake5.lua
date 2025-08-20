@@ -43,9 +43,10 @@ project "Demure"
 
     links 
     {
+        "ImGui",
         "glfw3",
-        "opengl32",
-        "ImGui"
+        "opengl32"
+        
     }
 
     defines {
