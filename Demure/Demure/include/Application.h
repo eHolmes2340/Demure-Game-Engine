@@ -6,6 +6,7 @@
 #pragma once
 #include<Core.h>
 
+struct GLFWwindow; 
 
 namespace Demure {
 
@@ -18,12 +19,12 @@ namespace Demure {
 		Application();
 		virtual ~Application(); 
 		void Run(); 
-
 		
 
 	private:
-		class Window* m_Window; 
+		
 		bool m_Running = true; 
+		GLFWwindow* m_Window = nullptr; 
 	};
 
 

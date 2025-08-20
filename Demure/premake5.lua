@@ -14,6 +14,9 @@ project "Demure"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+
+    include "../vendor/imgui"
+
     files
     {
         "Demure/include/**.h",
@@ -25,7 +28,9 @@ project "Demure"
         "Demure/src",
         "Demure/include",
         "../vendor/glfw/include",
-        "../vendor/spdlog/include"
+        "../vendor/spdlog/include",
+        "../vendor/imgui/backends",
+        "../vendor/imgui",
     }
 
     libdirs
@@ -36,7 +41,8 @@ project "Demure"
     links 
     {
         "glfw3",
-        "opengl32"
+        "opengl32",
+        "ImGui"
     }
 
     defines {

@@ -14,7 +14,6 @@ extern Demure::Application* Demure::CreateApplication();
 
 int main()
 {
-
     //Call the Demure::CreateApplication() from sandbox 
     Demure::Application* app = Demure::CreateApplication(); 
     app->Run();                           

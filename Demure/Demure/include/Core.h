@@ -1,12 +1,6 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
-#include<spdlog/spdlog.h>
-
 #include<memory>
-
-
-
 
 #ifdef _WIN32
 #ifdef DEMURE_BUILD_DLL
