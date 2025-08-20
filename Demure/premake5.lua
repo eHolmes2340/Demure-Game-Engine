@@ -1,5 +1,8 @@
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+
+include "../vendor/imgui/premake5.lua"
+
 project "Demure"
     kind "SharedLib"
     language "C++"
@@ -15,7 +18,7 @@ project "Demure"
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 
-    include "../vendor/imgui"
+   
 
     files
     {
@@ -29,8 +32,8 @@ project "Demure"
         "Demure/include",
         "../vendor/glfw/include",
         "../vendor/spdlog/include",
-        "../vendor/imgui/backends",
         "../vendor/imgui",
+        "../vendor/imgui/backends",
     }
 
     libdirs
