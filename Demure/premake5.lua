@@ -17,27 +17,32 @@ project "Demure"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    includedirs
+    {
+        "Demure/src",
+        "Demure/include",
+        -- Window GLFW
+        "../vendor/glfw/include",
+        --Logging 
+        "../vendor/spdlog/include",
+        --DearImGui
+        "../vendor/imgui",
+        "../vendor/imgui/backends",
 
-   
+        --Glad 
+        --Glad Header files
+        "../vendor/glad/include"
+    }
 
     files
     {
         "Demure/include/**.h",
         "Demure/src/**.cpp",
+        "../vendor/glad/src/gl.c"
     }
-
-    includedirs
-    {
-        "Demure/src",
-        "Demure/include",
-        "../vendor/glfw/include",
-        "../vendor/spdlog/include",
-        "../vendor/imgui",
-        "../vendor/imgui/backends",
-    }
-
     libdirs
     {
+        --Where the lib file is found
         "../vendor/glfw/lib-vc2022"
     }
 

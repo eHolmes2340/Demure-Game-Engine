@@ -5,6 +5,7 @@
 
 
 #include <Application.h>
+#include <glad/gl.h>
 #include <GLFW/glfw3.h>
 #include<spdlog/spdlog.h>
 #include<imgui.h>
@@ -12,23 +13,9 @@
 #include <backends/imgui_impl_opengl3.h>
 
 
-
-
 namespace Demure
 {
 	
-
-	//Function		: WindowSizeCallBack(window,int width, height)
-	//Return        : void
-	//Description   : Call back function for window resizing. 
-	void WindowSizeCallBack(GLFWwindow* window, int width, int height)
-	{
-		spdlog::info("Window resized: Width = {} Height = {}", width, height);
-		glViewport(0, 0, width, height);
-	}
-
-
-
 
 	//Constructor: Application::Application()
 	//Description: initalizes the window and sets the singleton instance 
@@ -40,7 +27,6 @@ namespace Demure
 			return; 
 		}
 
-		spdlog::info("Initalized complete"); 
 
 		m_Window = glfwCreateWindow(800, 600, "Demure Engine", nullptr, nullptr); 
 		if (!m_Window)
@@ -51,26 +37,47 @@ namespace Demure
 		}
 
 		glfwMakeContextCurrent(m_Window); 
+		glfwSwapInterval(1); // Enable vsync
 
-		glfwSetWindowSizeCallback(m_Window, Demure::WindowSizeCallBack);
+		
+		if (!gladLoadGL(glfwGetProcAddress))
+		{
+			spdlog::error("Failed to init Glad!"); 
+			return; 
+		}
+		
+		spdlog::info("OpenGL Vendor :{}",(const char*)glGetString(GL_VENDOR));
+		spdlog::info("OpenGL Renderer: {}",(const char *)glGetString(GL_RENDERER));
+		spdlog::info("OpenGL Version: {}",(const char *)glGetString(GL_VERSION));
+	
+		
+		//Setup ImGui
+		IMGUI_CHECKVERSION(); 
+		ImGui::CreateContext(); 
+		ImGuiIO& io = ImGui::GetIO();
+		(void)io; 
+		ImGui::StyleColorsDark(); 
 
+		//Setup Platform/Render backends
+		ImGui_ImplGlfw_InitForOpenGL(m_Window, true); 
+		ImGui_ImplOpenGL3_Init("#version 410"); 
 
+		//OpenGL state (important for ImGUI transparency
+		glEnable(GL_BLEND); 
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+		glEnable(GL_DEPTH_TEST); 
 
-		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
-		ImGui::StyleColorsDark();
-
-		// Setup Platform/Renderer backends
-		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
-		ImGui_ImplOpenGL3_Init("#version 410"); // or whatever GLSL version you use
-
+	
 	}
 
 	//Deconstructor: Application::~Application()
-	//Description  : Cleans up the window 
+	//Description  : Cleans up the window + ImGui
 	Application::~Application() {
 		
+		ImGui_ImplOpenGL3_Shutdown(); 
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
+
 		glfwDestroyWindow(m_Window); 
 		glfwTerminate(); 
 	}
@@ -83,22 +90,28 @@ namespace Demure
 		while (!glfwWindowShouldClose(m_Window))
 		{
 			glfwPollEvents();
-			// Start the ImGui frame
-			ImGui_ImplOpenGL3_NewFrame();
-			ImGui_ImplGlfw_NewFrame();
-			ImGui::NewFrame();
+			
+			//Create a ImGui frame
+			ImGui_ImplOpenGL3_NewFrame(); 
+			ImGui_ImplGlfw_NewFrame(); 
+			ImGui::NewFrame(); 
 
-			// Example UI
-			ImGui::Begin("Hello, ImGui!");
-			ImGui::Text("This is a test");
+			ImGui::Begin("Hello"); 
+			ImGui::Text("Test"); 
 			ImGui::End();
 
-			// Render ImGui
+
+			//Render ImGui
 			ImGui::Render();
+
 			int display_w, display_h;
 			glfwGetFramebufferSize(m_Window, &display_w, &display_h);
 			glViewport(0, 0, display_w, display_h);
-			glClear(GL_COLOR_BUFFER_BIT);
+
+			// Clear background (dark grey-blue instead of black)
+			glClearColor(0.1f, 0.1f, 0.2f, 1.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 			glfwSwapBuffers(m_Window);
