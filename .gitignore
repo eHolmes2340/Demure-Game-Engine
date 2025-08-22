@@ -15,15 +15,12 @@
 *.dylib
 *.out
 
-
 #Make file 
 *.make
 *.workspace
 
-
-
 #Build Folders
 bin/
 bin-int/
-vendor/Premake
+vendor/premake
 

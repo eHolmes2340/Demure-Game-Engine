@@ -5,12 +5,8 @@
 
 
 #include <Application.h>
-#include <glad/gl.h>
-#include <GLFW/glfw3.h>
-#include<spdlog/spdlog.h>
-#include<imgui.h>
-#include <backends/imgui_impl_glfw.h>
-#include <backends/imgui_impl_opengl3.h>
+
+
 
 
 namespace Demure
@@ -21,6 +17,7 @@ namespace Demure
 	//Description: initalizes the window and sets the singleton instance 
 	Application::Application()
 	{
+
 		if (!glfwInit())
 		{
 			spdlog::error("Failed initalizing GLFW!!"); 
@@ -36,6 +33,8 @@ namespace Demure
 			return; 
 		}
 
+		
+
 		glfwMakeContextCurrent(m_Window); 
 		glfwSwapInterval(1); // Enable vsync
 
@@ -50,6 +49,9 @@ namespace Demure
 		spdlog::info("OpenGL Renderer: {}",(const char *)glGetString(GL_RENDERER));
 		spdlog::info("OpenGL Version: {}",(const char *)glGetString(GL_VERSION));
 	
+
+		//Call the 
+
 		
 		//Setup ImGui
 		IMGUI_CHECKVERSION(); 

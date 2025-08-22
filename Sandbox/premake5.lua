@@ -25,8 +25,11 @@ project "Sandbox"
         "../Demure/Demure/include",   
         "Sandbox/include", 
         "Sandbox/src",      -- Include Demure headers
+        "../vendor/glad/include",
         "../vendor/glfw/include",
-        "../vendor/spdlog/include" -- If you also need glfw headers here
+        "../vendor/spdlog/include",
+        "../vendor/imgui",
+        "../vendor/imgui/backends"
     }
 
     links

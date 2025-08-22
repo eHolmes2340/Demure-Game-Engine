@@ -5,7 +5,6 @@
 //Description   :
 
 #include <Application.h>
-#include <spdlog/spdlog.h>
 
 
 //Method     : SandboxApp

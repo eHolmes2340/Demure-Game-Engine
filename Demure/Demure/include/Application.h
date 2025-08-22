@@ -5,6 +5,8 @@
 //Description   : This header file contains the Application object. 
 #pragma once
 #include<Core.h>
+#include<Engine.h>
+#include <DemureImGui.h>
 
 struct GLFWwindow; 
 

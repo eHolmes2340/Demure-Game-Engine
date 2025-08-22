@@ -21,17 +21,19 @@ project "Demure"
     {
         "Demure/src",
         "Demure/include",
+
+         
+        --Glad Header files
+        "../vendor/glad/include",
         -- Window GLFW
         "../vendor/glfw/include",
         --Logging 
         "../vendor/spdlog/include",
         --DearImGui
         "../vendor/imgui",
-        "../vendor/imgui/backends",
+        "../vendor/imgui/backends"
 
-        --Glad 
-        --Glad Header files
-        "../vendor/glad/include"
+       
     }
 
     files
