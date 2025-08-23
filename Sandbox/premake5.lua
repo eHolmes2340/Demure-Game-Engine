@@ -29,7 +29,8 @@ project "Sandbox"
         "../vendor/glfw/include",
         "../vendor/spdlog/include",
         "../vendor/imgui",
-        "../vendor/imgui/backends"
+        "../vendor/imgui/backends",
+        "../Demure/Demure/tools"
     }
 
     links
@@ -48,7 +49,7 @@ project "Sandbox"
 
     postbuildcommands {
         'if exist "..\\..\\Demure\\bin\\' .. outputdir .. '\\Demure\\Demure.dll" (',
-        '    echo Copying Demure.dll...',
+        '    echo Copying Demure.dll from Demure\\bin to Sandbox\\bin',
         '    copy /Y "..\\..\\Demure\\bin\\' .. outputdir .. '\\Demure\\Demure.dll" "$(TargetDir)"',
         ')'
     }

@@ -2,11 +2,17 @@
 #include<Engine.h>
 #include<spdlog/spdlog.h>
 #include<spdlog/sinks/stdout_color_sinks.h>
-class Log
+
+//Class         :Log
+//Description	: This class will contain our logging tool used for debugging and working through problems. 
+class DEMURE_API Log
 {
 public:
 	static void Init()
 	{
+
+		if (!s_Logger)  // ensure only initialized once
+			s_Logger = spdlog::stdout_color_mt("CORE");
 #ifdef DEMURE_DEBUG
 		spdlog::set_level(spdlog::level::trace); 
 

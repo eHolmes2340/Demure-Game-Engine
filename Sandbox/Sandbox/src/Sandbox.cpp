@@ -17,11 +17,6 @@ public:
 	~SandboxApp() {}; 
 
 
-	//Method	 : void OnUpdate 
-	//Description: This function overrides the OnUpdate method found in the 
-	//             Application class Demure/include/Application.h
-
-
 };
 
 

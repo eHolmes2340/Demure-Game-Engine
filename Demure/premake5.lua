@@ -28,6 +28,8 @@ project "Demure"
         "Demure/src",
         "Demure/include",
 
+        "Demure/tools", 
+
          
         --Glad Header files
         "../vendor/glad/include",
@@ -37,7 +39,11 @@ project "Demure"
         "../vendor/spdlog/include",
         --DearImGui
         "../vendor/imgui",
-        "../vendor/imgui/backends"
+        "../vendor/imgui/backends", 
+        
+        --GLM Math 
+        "../vendor/glm/glm", 
+
 
        
     }
@@ -46,6 +52,8 @@ project "Demure"
     {
         "Demure/include/**.h",
         "Demure/src/**.cpp",
+        "Demure/tools/**.cpp", 
+        "Demure/tools/**.h", 
         "../vendor/glad/src/gl.c"
     }
     libdirs

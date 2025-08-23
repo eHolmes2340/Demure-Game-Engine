@@ -1,6 +1,6 @@
 #pragma once
 
-#define DEBUG_MODE 
+#include<Core.h>
 
 
 // Standard Library
@@ -20,6 +20,6 @@
 
 
 
-
-
+//Tool Folder
+#include"../tools/Log.h"
 

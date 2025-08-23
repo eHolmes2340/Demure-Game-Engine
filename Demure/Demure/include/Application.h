@@ -4,10 +4,11 @@
 //Date Editted  : 07/03/2025
 //Description   : This header file contains the Application object. 
 #pragma once
-#include<Core.h>
+
 #include<Engine.h>
 #include <DemureImGui.h>
-#include"../tools/Log.h"
+#include <Window.h>
+
 namespace Demure {
 
 	//Class	     : Application
@@ -19,18 +20,17 @@ namespace Demure {
 		Application();
 		virtual ~Application(); 
 		void Run(); 
-		
 
 	private:
 		
 		bool m_Running = true; 
-		GLFWwindow* m_Window = nullptr; 
-		DemureImGui* m_UI = nullptr; 
+		std::unique_ptr<Window> m_Window=nullptr; 
 
+	
 	};
 
 
-
+	//This will defined in the sandbox. 
 	Application* CreateApplication(); 
 
 }
