@@ -5,10 +5,6 @@
 
 
 #include <Application.h>
-
-
-
-
 namespace Demure
 {
 	
@@ -20,7 +16,7 @@ namespace Demure
 
 		if (!glfwInit())
 		{
-			spdlog::error("Failed initalizing GLFW!!"); 
+			DM_CORE_ERROR("Failed initalizing GLFW!");
 			return; 
 		}
 
@@ -45,29 +41,13 @@ namespace Demure
 			return; 
 		}
 		
-		spdlog::info("OpenGL Vendor :{}",(const char*)glGetString(GL_VENDOR));
-		spdlog::info("OpenGL Renderer: {}",(const char *)glGetString(GL_RENDERER));
-		spdlog::info("OpenGL Version: {}",(const char *)glGetString(GL_VERSION));
-	
+		//Found 
+		DM_CORE_INFO("OpenGL Vendor   : {}", (const char*)glGetString(GL_VENDOR));
+		DM_CORE_INFO("OpenGL Renderer : {}", (const char*)glGetString(GL_RENDERER));
+		DM_CORE_INFO("OpenGL Version  : {}", (const char*)glGetString(GL_VERSION));
 
-		//Call the 
-
-		
-		//Setup ImGui
-		IMGUI_CHECKVERSION(); 
-		ImGui::CreateContext(); 
-		ImGuiIO& io = ImGui::GetIO();
-		(void)io; 
-		ImGui::StyleColorsDark(); 
-
-		//Setup Platform/Render backends
-		ImGui_ImplGlfw_InitForOpenGL(m_Window, true); 
-		ImGui_ImplOpenGL3_Init("#version 410"); 
-
-		//OpenGL state (important for ImGUI transparency
-		glEnable(GL_BLEND); 
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
-		glEnable(GL_DEPTH_TEST); 
+		//Setup ImGui using the DemureImGui class
+		m_UI = new DemureImGui(m_Window); 
 
 	
 	}
@@ -76,10 +56,7 @@ namespace Demure
 	//Description  : Cleans up the window + ImGui
 	Application::~Application() {
 		
-		ImGui_ImplOpenGL3_Shutdown(); 
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-
+		delete m_UI; 
 		glfwDestroyWindow(m_Window); 
 		glfwTerminate(); 
 	}

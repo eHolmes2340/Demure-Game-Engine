@@ -1,6 +1,6 @@
 #pragma once
 
-#define DEBUG
+#define DEBUG_MODE 
 
 
 // Standard Library
@@ -12,6 +12,7 @@
 
 //Engine 
 #include<glad/gl.h>
+#define GLFW_INCLUDE_NONE
 #include<GLFW/glfw3.h>
 #include<imgui.h>
 #include <backends/imgui_impl_glfw.h>
@@ -20,9 +21,5 @@
 
 
 
-//Logging 
-#ifdef DEBUG
-	#include<spdlog/spdlog.h>
-#endif // DEBUG
 
 

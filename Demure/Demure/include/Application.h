@@ -7,9 +7,7 @@
 #include<Core.h>
 #include<Engine.h>
 #include <DemureImGui.h>
-
-struct GLFWwindow; 
-
+#include"../tools/Log.h"
 namespace Demure {
 
 	//Class	     : Application
@@ -27,6 +25,8 @@ namespace Demure {
 		
 		bool m_Running = true; 
 		GLFWwindow* m_Window = nullptr; 
+		DemureImGui* m_UI = nullptr; 
+
 	};
 
 

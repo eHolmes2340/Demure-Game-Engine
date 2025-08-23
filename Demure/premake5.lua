@@ -1,3 +1,9 @@
+--- File        : Demure/premake5
+-- Programmer   : Erik Holmes
+-- Last Editted : Aug 22, 2025
+-- Description  : This file contains 
+
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 
