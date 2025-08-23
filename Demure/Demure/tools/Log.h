@@ -1,3 +1,9 @@
+//File		  : Log.h 
+//Programmer  : Erik Holmes
+//Last Editted: Aug 23,2025
+//Description : This file contains the Logging class.   
+
+
 #pragma once
 #include<Engine.h>
 #include<spdlog/spdlog.h>
@@ -8,15 +14,18 @@
 class DEMURE_API Log
 {
 public:
+
+
+	//Method	 : Init
+	//Description: This method will initalize our Logger 
 	static void Init()
 	{
 
 		if (!s_Logger)  // ensure only initialized once
 			s_Logger = spdlog::stdout_color_mt("CORE");
+
 #ifdef DEMURE_DEBUG
 		spdlog::set_level(spdlog::level::trace); 
-
-
 #else 
 		spdlog::set_level(spdlog::level::warn);
 

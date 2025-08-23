@@ -6,8 +6,8 @@
 #pragma once
 
 #include<Engine.h>
-#include <DemureImGui.h>
 #include <Window.h>
+#include <Input.h>
 
 namespace Demure {
 
@@ -21,11 +21,21 @@ namespace Demure {
 		virtual ~Application(); 
 		void Run(); 
 
+		//Get 
+		static Application& Get() { return *s_Instance;  }
+
+		//Fetch the Window 
+		Window& GetWindow() { return *m_Window;  }
+
 	private:
 		
 		bool m_Running = true; 
-		std::unique_ptr<Window> m_Window=nullptr; 
 
+		std::unique_ptr<Window> m_Window=nullptr; 
+		
+
+		//Use to get current s_Instance
+		static Application* s_Instance; 
 	
 	};
 
