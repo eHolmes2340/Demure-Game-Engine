@@ -1,3 +1,9 @@
+//File		 : Core.h
+//Programmer : Erik Holmes
+//Date		 : Aug 18, 2025
+//Description: This file will contain the macro used to export the sandbox.exe
+
+
 #pragma once
 
 

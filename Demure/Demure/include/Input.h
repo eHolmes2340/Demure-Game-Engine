@@ -1,9 +1,16 @@
+//File      :
+//Programmer:
+
+
 #pragma once
 #include<Core.h>
 #include<Engine.h>
 
 namespace Demure
 {
+
+    //Class      :Input
+    //Description:
     class DEMURE_API Input
     {
     public:
