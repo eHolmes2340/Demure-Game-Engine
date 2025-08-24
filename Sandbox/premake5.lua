@@ -30,7 +30,9 @@ project "Sandbox"
         "../vendor/spdlog/include",
         "../vendor/imgui",
         "../vendor/imgui/backends",
-        "../Demure/Demure/tools"
+        "../Demure/Demure/tools",
+
+         "../vendor/glm", 
     }
 
     links
@@ -48,10 +50,7 @@ project "Sandbox"
     defines { "SANDBOX_PLATFORM_WINDOWS" }
 
     postbuildcommands {
-        'if exist "..\\..\\Demure\\bin\\' .. outputdir .. '\\Demure\\Demure.dll" (',
-        '    echo Copying Demure.dll from Demure\\bin to Sandbox\\bin',
-        '    copy /Y "..\\..\\Demure\\bin\\' .. outputdir .. '\\Demure\\Demure.dll" "$(TargetDir)"',
-        ')'
+       
     }
 
 

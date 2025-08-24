@@ -1,6 +1,7 @@
-//File      :
-//Programmer:
-
+//File        : Input.h
+//Programmer  : Erik Holmes
+//Last Editted: Aug 23, 2025
+//Description : This file contains 
 
 #pragma once
 #include<Core.h>
@@ -9,7 +10,7 @@
 namespace Demure
 {
 
-    //Class      :Input
+    //Class      : Input
     //Description:
     class DEMURE_API Input
     {

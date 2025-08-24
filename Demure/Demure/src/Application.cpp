@@ -9,6 +9,9 @@
 namespace Demure
 {
 	Application* Application::s_Instance = nullptr;
+
+	//Prototyping 
+	void TestMouseLocation(); 
 	
 	//Constructor: Application::Application()
 	//Description: initalizes the window and sets the singleton instance 
@@ -40,19 +43,30 @@ namespace Demure
 	//Description: This method is the main loop 
 	void Application::Run()
 	{
+		Renderer::Init(); 
+
 		while (m_Running)
 		{
 
-			if (Input::IsMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT))
-			{
-				auto [x, y] = Input::GetMousePosition(); 
-
-				DM_CORE_INFO("Mouse Position x:{0} Mouse Position y:{1}", x, y); 
-			}
-
+			glm::mat4 vp = glm::mat4(1.0f); 
+			Renderer::BeginScene(vp); 
 			
 
+			
+			Renderer::EndScene(); 
 			m_Window->OnUpdate(); 
+		}
+		Renderer::ShutDown(); 
+	}
+
+
+	void TestMouseLocation()
+	{
+		if (Input::IsMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT))
+		{
+			auto [x, y] = Input::GetMousePosition();
+
+			DM_CORE_INFO("Mouse Position x:{0} Mouse Position y:{1}", x, y);
 		}
 	}
 

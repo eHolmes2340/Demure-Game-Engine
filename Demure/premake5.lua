@@ -42,7 +42,7 @@ project "Demure"
         "../vendor/imgui/backends", 
         
         --GLM Math 
-        "../vendor/glm/glm", 
+        "../vendor/glm", 
 
 
        
@@ -81,6 +81,11 @@ project "Demure"
             "DEMURE_PLATFORM_WINDOWS",
             "DEMURE_BUILD_DLL"
         }
+
+    postbuildcommands{
+        '{COPY} "%{wks.location}/Demure/bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/Demure/Demure.dll" "%{wks.location}/Sandbox/bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/Sandbox/"'
+    }
+  
 
     filter "configurations:Debug"
         defines "DEMURE_DEBUG"

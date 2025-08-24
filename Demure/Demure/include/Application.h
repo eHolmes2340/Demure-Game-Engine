@@ -8,8 +8,10 @@
 #include<Engine.h>
 #include <Window.h>
 #include <Input.h>
+#include <Renderer.h>
 
-namespace Demure {
+namespace Demure
+{
 
 	//Class	     : Application
 	//Description: Defines the Core application class that runs the engine loop. 
